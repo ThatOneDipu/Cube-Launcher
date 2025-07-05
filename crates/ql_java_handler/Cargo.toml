@@ -1,0 +1,19 @@
+[package]
+name = "ql_java_handler"
+version = "0.0.0"
+edition = "2021"
+
+[dependencies]
+ql_core = { path = "../ql_core" }
+
+thiserror = { workspace = true }
+tokio = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+colored = { workspace = true }
+
+# Avengers assemble
+flate2 = "1"
+tar = "0.4"
+zip-extract = { workspace = true }
+lzma-rs = "0.3"

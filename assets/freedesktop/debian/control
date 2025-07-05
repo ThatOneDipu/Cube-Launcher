@@ -1,0 +1,6 @@
+Package: cube-launcher
+Version: Beta
+Maintainer: Dynamic Development, LLC <dipeshbishowkarma9@gmail.com>
+Architecture: all
+Description: A simple Minecraft Launcher written in Quantum Launcher SourceCode
+Source: cube-launcher
