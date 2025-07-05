@@ -1,0 +1,59 @@
+[workspace]
+members = [
+    "quantum_launcher",
+    "crates/ql_instances",
+    "crates/ql_mod_manager",
+    "crates/ql_core",
+    "crates/ql_servers",
+    "crates/ql_java_handler",
+    "crates/ql_reqwest",
+    "crates/ql_packager",
+]
+resolver = "2"
+
+[workspace.dependencies]
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+tokio = { version = "1", features = ["fs", "macros", "process"] }
+
+colored = "3"
+chrono = "0.4"
+thiserror = "2"
+rfd = { version = "0.15", default-features = false, features = [
+    "xdg-portal",
+    "tokio",
+] }
+
+zip-extract = { version = "0.4", default-features = false, features = [
+    "deflate",
+] }
+zip = { version = "4", default-features = false, features = ["deflate"] }
+walkdir = "2.3"
+image = { version = "0.24", default-features = false, features = [
+    # Web formats are enough
+    #"avif",
+    "gif",
+    "ico",
+    "jpeg",
+    "png",
+    "webp",
+] }
+tempfile = "3"
+
+# [profile.dev]
+# opt-level = 1
+
+[profile.dev.package."*"]
+opt-level = 3
+debug = false
+
+[profile.release-dbg]
+inherits = "release"
+debug = true
+
+[profile.release-ql]
+inherits = "release"
+opt-level = "s"
+lto = "fat"
+strip = "symbols"
+panic = "abort"
