@@ -1,0 +1,75 @@
+[package]
+name = "quantum_launcher"
+version = "0.4.1"
+edition = "2021"
+
+authors = ["Dynamic Development, LLC <dipeshbishowkarma9@gmail.com>"]
+description = "A simple, powerful Minecraft Launcher, Based on Quantum"
+keywords = ["minecraft", "mc", "launcher", "game-tools", "modding"]
+license = "GPL-3.0-only"
+homepage = "https://mrmayman.github.io/quantumlauncher"
+repository = "https://github.com/Mrmayman/quantumlauncher/"
+readme = "../README.md"
+categories = ["games"]
+
+build = "build.rs"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[build-dependencies]
+embed-resource = "3"
+
+[features]
+default = ["wgpu", "tiny_skia"]
+wgpu = ["iced/wgpu"]
+tiny_skia = ["iced/tiny-skia"]
+
+debug = ["iced/debug"]
+simulate_linux_arm64 = ["ql_instances/simulate_linux_arm64"]
+
+[dependencies]
+ql_instances = { path = "../crates/ql_instances" }
+ql_mod_manager = { path = "../crates/ql_mod_manager" }
+ql_core = { path = "../crates/ql_core" }
+ql_servers = { path = "../crates/ql_servers" }
+ql_packager = { path = "../crates/ql_packager" }
+
+# For the GUI
+iced = { version = "0.13", default-features = false, features = [
+    "tokio",
+    "image",
+    "svg",
+] }
+
+# For parsing JSON
+serde = { workspace = true }
+serde_json = { workspace = true }
+
+# For managing async tasks
+tokio = { workspace = true }
+# For managing the logging time/date
+chrono = { workspace = true }
+# For the icon widget macro
+paste = "1"
+# For the file picker
+rfd = { workspace = true }
+
+# Terminal
+terminal_size = "0.4"
+colored = { workspace = true }
+clap = { version = "4", features = ["help"] }
+
+# Mod page rendering:
+# - Markdown rendering
+comrak = { version = "0.39", default-features = false }
+# - Image loading
+image = { workspace = true }
+# - HTML Rendering:
+html5ever = "0.27"
+markup5ever_rcdom = "0.3"
+
+# iced::widget::markdown doesn't have inline
+# HTML support so I made my own renderer.
+
+[target.'cfg(target_os = "windows")'.dependencies]
+windows = { version = "0.61", features = ["Win32_System_Console"] }
