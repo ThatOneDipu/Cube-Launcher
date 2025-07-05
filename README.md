@@ -48,8 +48,8 @@ Or, you can compile the launcher to get the latest experimental version (with po
 To compile the launcher:
 
 ```sh
-git clone https://github.com/Mrmayman/quantumlauncher.git
-cd quantum-launcher
+git clone https://github.com/ThatOneDipu/Cube-Launcher.git
+cd quantumlauncher
 cargo run --release
 ```
 You can omit the `--release` flag for faster compile times, but *slightly* worse performance and MUCH larger build file size.
